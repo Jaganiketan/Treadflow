@@ -1,0 +1,6 @@
+{
+  "name": "TradeFlow",
+  "description": "After-Market Order Automation and Multi-Broker Trading Application with Client and Owner Dashboards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
