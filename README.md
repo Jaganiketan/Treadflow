@@ -1,21 +1,22 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# TradeFlow Algo — Paper Mode
 
-# Run and deploy your AI Studio app
+This folder contains the first GitHub Actions paper-trading engine.
 
-This contains everything you need to run your app locally.
+## Important
+- **Paper trading only.** It does not connect to Angel One and cannot place real orders.
+- The sample CSV is only test data. Replace it with properly sourced historical/market data before evaluating a strategy.
+- GitHub Actions is being used as a free test runner; it is not a suitable production host for Angel One live order execution because hosted-runner IPs are not fixed.
 
-View your app in AI Studio: https://ai.studio/apps/e504b9e5-6c2b-413c-b32a-4d79beefd6dd
+## Run locally
+```bash
+python3 algo/paper_algo.py
+```
+Output: `paper_trades.csv`.
 
-## Run Locally
+## Strategy defaults
+- EMA 9 / EMA 21 crossover
+- RSI 14 confirmation (>= 50 long, <= 50 short)
+- Stop loss: 0.5%
+- Target: 1%
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
-
-
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
+These are **example parameters, not financial advice or a claim of profitability**.
