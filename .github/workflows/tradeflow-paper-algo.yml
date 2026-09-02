@@ -1,0 +1,37 @@
+name: TradeFlow Paper Algo
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  paper-algo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Paper Algo
+        env:
+          MARKET_DATA_FILE: natural_gas_mini.csv
+          TRADES_FILE: paper_trades.csv
+          EMA_FAST: "9"
+          EMA_SLOW: "21"
+          RSI_PERIOD: "14"
+          STOP_PCT: "0.5"
+          TARGET_PCT: "1.0"
+        run: |
+          python paper_algo.py
+
+      - name: Upload Trade Log
+        uses: actions/upload-artifact@v4
+        with:
+          name: tradeflow-paper-trades
+          path: paper_trades.csv
